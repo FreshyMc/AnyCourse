@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import Navigation from './components/Navigation'
-
-import './assets/style.css';
+import Header from './components/Header';
+import LoginModal from './components/LoginModal';
 
 function App() {
   return (
-    <Navigation />
+    <>
+      <Navigation />
+      <Header />
+      <LoginModal />
+    </>
   )
 }
 
