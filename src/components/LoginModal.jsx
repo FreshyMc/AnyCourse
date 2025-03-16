@@ -22,16 +22,36 @@ export default function LoginModal({ref}) {
         console.error(err);
 
     }, []);
+
+    const validate = (values) => {
+        const emptyFields = Object.values(values).some(value => !value.trim());
+
+        const notValid = emptyFields;
+
+        let errors = [];
+
+        if (notValid) {
+            errors.push('Please fill all the fields');
+
+            return {validated: false, errors};
+        }
+
+        return {validated: true, errors};
+    };
+
     const { values, loading, error, handleChange, handleSubmit, clearErrors } = useForm(
         {email: '', password: ''}, 
         loginEndpoint, 
         successCallback, 
-        failureCallback
+        failureCallback,
+        validate
     );
+
     const modalRef = useRef(null);
 
     const handleClose = () => {
         modalRef.current.close();
+        clearErrors();
     };
 
     useImperativeHandle(ref, () => {

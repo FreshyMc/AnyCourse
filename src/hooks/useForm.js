@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import { loginEndpoint } from "../utils/constants";
 
-export default function useForm(initialValues, submitUrl, success, failure) {
+export default function useForm(initialValues, submitUrl, success, failure, validate = () => ({validated: true, errors: []})) {
     const [values, setValues] = useState(initialValues);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -26,7 +25,15 @@ export default function useForm(initialValues, submitUrl, success, failure) {
         setLoading(true);
         setError(null);
 
-        axios.post(loginEndpoint, values).then(({data}) => {
+        const {validated, errors} = validate(values);
+
+        if (!validated) {
+            setLoading(false);
+            setError({message: errors.join(', ')});
+            return;
+        }
+
+        axios.post(submitUrl, values).then(({data}) => {
             success(data);
         }).catch(({response}) => {
             setError(response.data);
