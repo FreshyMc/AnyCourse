@@ -4,4 +4,8 @@ const loginEndpoint = `/api/auth/login`;
 
 const registerEndpoint = `/api/auth/register`;
 
-export {loginEndpoint, registerEndpoint};
+const profileEndpoint = `/api/user/me`;
+
+const profileAvatarEndpoint = `/api/user/avatar`;
+
+export {loginEndpoint, registerEndpoint, profileEndpoint, profileAvatarEndpoint};
