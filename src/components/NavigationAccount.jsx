@@ -33,7 +33,7 @@ export default function NavigationAccount() {
                         <Link to='/my-profile'>My Profile</Link>
                     </li>
                     <li>
-                        <Link to='#dashboard'>My Dashboard</Link>
+                        <Link to='/dashboard'>My Dashboard</Link>
                     </li>
                     <li className="separated">
                         <button className="btn logout-btn" onClick={handleLogout}>
