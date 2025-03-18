@@ -8,4 +8,21 @@ const profileEndpoint = `/api/user/me`;
 
 const profileAvatarEndpoint = `/api/user/avatar`;
 
-export {loginEndpoint, registerEndpoint, profileEndpoint, profileAvatarEndpoint};
+const academiesEndpoint = `/api/shop/all`;
+
+const followAcademyEndpoint = (id) => `/api/shop/follow/${id}`;
+
+const unfollowAcademyEndpoint = (id) => `/api/shop/unfollow/${id}`;
+
+const academyThumbnailEndpoint = `/api/shop/thumbnail`;
+
+export {
+    loginEndpoint, 
+    registerEndpoint, 
+    profileEndpoint, 
+    profileAvatarEndpoint, 
+    academiesEndpoint,
+    followAcademyEndpoint,
+    unfollowAcademyEndpoint,
+    academyThumbnailEndpoint
+};

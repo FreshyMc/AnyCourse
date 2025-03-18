@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, Navigate } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
 import useFetch from "../hooks/useFetch";
 import { profileAvatarEndpoint, profileEndpoint } from "../utils/constants";
