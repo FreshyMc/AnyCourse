@@ -5,6 +5,7 @@ import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
 import PrivateRoute from './components/PrivateRoute';
 import DashboardPage from './pages/DashboardPage';
+import EditProfilePage from './pages/EditProfilePage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route index element={<LandingPage />} />
           <Route element={<PrivateRoute />}>
             <Route path='/my-profile' element={<ProfilePage />} />
+            <Route path='/edit-profile' element={<EditProfilePage />} />
             <Route path='/dashboard' element={<DashboardPage />} />
           </Route>
         </Routes>

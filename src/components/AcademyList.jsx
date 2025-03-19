@@ -8,8 +8,8 @@ const TOTAL = 5;
 
 const initialPage = {page: 1, total: 1, content: []};
 
-export default function AcademyList() {
-    const [data, loading] = useFetch(academiesEndpoint);
+export default function AcademyList({requestEndpoint = academiesEndpoint, requestParams = {}}) {
+    const [data, loading] = useFetch(requestEndpoint, {params: requestParams});
     const [{page, total, content}, setPage] = useState(initialPage);
     const wrapperRef = useRef(null);
 
