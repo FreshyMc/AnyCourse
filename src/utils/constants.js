@@ -16,6 +16,8 @@ const unfollowAcademyEndpoint = (id) => `/api/shop/unfollow/${id}`;
 
 const academyThumbnailEndpoint = `/api/shop/thumbnail`;
 
+const editProfileEndpoint = `/api/user/`;
+
 export {
     loginEndpoint, 
     registerEndpoint, 
@@ -24,5 +26,6 @@ export {
     academiesEndpoint,
     followAcademyEndpoint,
     unfollowAcademyEndpoint,
-    academyThumbnailEndpoint
+    academyThumbnailEndpoint,
+    editProfileEndpoint
 };

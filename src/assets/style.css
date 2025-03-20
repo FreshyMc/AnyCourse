@@ -480,3 +480,25 @@ footer {
 .edit-profile-btn span {
     padding-right: 15px;
 }
+
+.edit-profile-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 122px);
+    background-color: rgba(59, 96, 228, .15);
+}
+
+.edit-profile-form-wrapper {
+    background-color: #fff;
+    border-radius: .45rem;
+}
+
+.edit-profile-form-wrapper form {
+    padding: 25px;
+}
+
+.separator {
+    height: 2px;
+    background-color: rgba(59, 96, 228, .25);
+}

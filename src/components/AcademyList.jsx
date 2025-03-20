@@ -6,7 +6,7 @@ import useFetch from "../hooks/useFetch";
 
 const TOTAL = 5;
 
-const initialPage = {page: 1, total: 1, content: []};
+const initialPage = {page: 0, total: 1, content: []};
 
 export default function AcademyList({requestEndpoint = academiesEndpoint, requestParams = {}}) {
     const [data, loading] = useFetch(requestEndpoint, {params: requestParams});
@@ -33,7 +33,7 @@ export default function AcademyList({requestEndpoint = academiesEndpoint, reques
 
     return (
         <div className="academy-list-wrapper mt-3">
-            {page !== 1 && (
+            {page > 1 && (
                 <button className="btn next-btn left" onClick={handleSlideLeft}>
                     <i className="fa-solid fa-chevron-left fa-lg" />
                 </button>)

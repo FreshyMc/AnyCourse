@@ -1,11 +1,11 @@
+import axios from "axios";
 import { useState } from "react";
-import api from "../utils/api";
 
-export default function useForm(initialValues, submitUrl, method, success, failure) {
+export default function useAuthForm(initialValues, submitUrl, success, failure, validate = () => ({validated: true, errors: []})) {
     const [values, setValues] = useState(initialValues);
-    const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    
+    const [error, setError] = useState(null);
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.currentTarget;
 
@@ -25,9 +25,15 @@ export default function useForm(initialValues, submitUrl, method, success, failu
         setLoading(true);
         setError(null);
 
-        const call = method === 'post' ? api.post : api.put;
+        const {validated, errors} = validate(values);
 
-        call(submitUrl, values).then(({data}) => {
+        if (!validated) {
+            setLoading(false);
+            setError({message: errors.join(', ')});
+            return;
+        }
+
+        axios.post(submitUrl, values).then(({data}) => {
             success(data);
         }).catch(({response}) => {
             setError(response.data);
@@ -38,5 +44,5 @@ export default function useForm(initialValues, submitUrl, method, success, failu
         });
     };
 
-    return { values, error, loading, handleChange, resetForm, handleSubmit, clearErrors };
+    return { values, loading, error, handleChange, resetForm, handleSubmit, clearErrors };
 }

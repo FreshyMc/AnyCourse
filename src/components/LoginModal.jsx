@@ -1,6 +1,6 @@
 import { useCallback, useImperativeHandle, useRef, useState } from "react";
 import Modal from "./Modal";
-import useForm from "../hooks/useForm";
+import useAuthForm from "../hooks/useAuthForm";
 import { loginEndpoint } from "../utils/constants";
 import AuthAlert from "./AuthAlert";
 import { useAuth } from "../contexts/AuthContext";
@@ -39,7 +39,7 @@ export default function LoginModal({ref}) {
         return {validated: true, errors};
     };
 
-    const { values, loading, error, handleChange, handleSubmit, clearErrors } = useForm(
+    const { values, loading, error, handleChange, handleSubmit, clearErrors } = useAuthForm(
         {email: '', password: ''}, 
         loginEndpoint, 
         successCallback, 

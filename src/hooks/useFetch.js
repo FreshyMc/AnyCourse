@@ -3,7 +3,7 @@ import api from "../utils/api";
 
 export default function useFetch(url, config = {}) {
     const [loading, setLoading] = useState(false);
-    const [data, setData] = useState();
+    const [data, setData] = useState(null);
 
     const stableConfig = useMemo(() => config, [JSON.stringify(config)]);
 
