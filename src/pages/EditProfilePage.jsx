@@ -7,9 +7,9 @@ export default function EditProfilePage() {
         <>
             <main className="row edit-profile-main">
                 <div className="col-5 p-0 my-4 edit-profile-form-wrapper">
-                    <div className="form-heading text-center p-2">
-                        <h3>Edit Profile</h3>
-                        <p>
+                    <div className="form-heading text-center">
+                        <h3 className="m-0">Edit Profile</h3>
+                        <p className="my-3">
                             Edit your profile username and change password here
                         </p>
                     </div>

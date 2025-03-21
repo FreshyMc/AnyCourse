@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { registerEndpoint } from "../utils/constants";
 import useAuthForm from "../hooks/useAuthForm";
 import AuthAlert from "./AuthAlert";
+import PasswordInput from "./PasswordInput";
 
 export default function RegisterModal({ref}) {
     const [success, setSuccess] = useState(false);
@@ -48,7 +49,7 @@ export default function RegisterModal({ref}) {
     }
 
     const { values, loading, error, handleChange, handleSubmit, clearErrors } = useAuthForm(
-        {email: '', password: '', username: ''}, 
+        {email: '', password: '', confirmPassword: '', username: ''}, 
         registerEndpoint, 
         successCallback, 
         failureCallback,
@@ -82,8 +83,8 @@ export default function RegisterModal({ref}) {
                     <form onSubmit={handleSubmit}>
                         <input onChange={handleChange} value={values.username} type="text" name="username" placeholder="Username" className="form-control mb-3" />
                         <input onChange={handleChange} value={values.email} type="email" name="email" placeholder="Email" className="form-control mb-3" />
-                        <input onChange={handleChange} value={values.password} type="password" name="password" placeholder="Password" className="form-control mb-3" />
-                        <input onChange={handleChange} value={values.confirmPassword} type="password" name="confirmPassword" placeholder="Confirm password" className="form-control mb-3" />
+                        <PasswordInput onChange={handleChange} value={values.password} type="password" name="password" placeholder="Password" />
+                        <PasswordInput onChange={handleChange} value={values.confirmPassword} type="password" name="confirmPassword" placeholder="Confirm password" />
                         <button type="submit" className="btn auth-btn" disabled={loading}>Register</button>
                     </form>
                 </div>

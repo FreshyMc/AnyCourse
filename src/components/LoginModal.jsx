@@ -4,6 +4,7 @@ import useAuthForm from "../hooks/useAuthForm";
 import { loginEndpoint } from "../utils/constants";
 import AuthAlert from "./AuthAlert";
 import { useAuth } from "../contexts/AuthContext";
+import PasswordInput from "./PasswordInput";
 
 export default function LoginModal({ref}) {
     const [success, setSuccess] = useState(false);
@@ -73,7 +74,7 @@ export default function LoginModal({ref}) {
                     <h2 className="mb-4">Sign In</h2>
                     <form onSubmit={handleSubmit}>
                         <input onChange={handleChange} value={values.email} type="email" name="email" placeholder="Email" className="form-control mb-3" />
-                        <input onChange={handleChange} value={values.password} type="password" name="password" placeholder="Password" className="form-control mb-3" />
+                        <PasswordInput onChange={handleChange} value={values.password} name="password" placeholder="Password" />
                         <button type="submit" className="btn auth-btn" disabled={loading}>Login</button>
                     </form>
                 </div>

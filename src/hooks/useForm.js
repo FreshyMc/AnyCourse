@@ -25,7 +25,7 @@ export default function useForm(initialValues, submitUrl, method, success, failu
         setLoading(true);
         setError(null);
 
-        const call = method === 'post' ? api.post : api.put;
+        const call = api[method];
 
         call(submitUrl, values).then(({data}) => {
             success(data);

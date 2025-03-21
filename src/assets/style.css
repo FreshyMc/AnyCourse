@@ -492,6 +492,7 @@ footer {
 .edit-profile-form-wrapper {
     background-color: #fff;
     border-radius: .45rem;
+    overflow: hidden;
 }
 
 .edit-profile-form-wrapper form {
@@ -501,4 +502,10 @@ footer {
 .separator {
     height: 2px;
     background-color: rgba(59, 96, 228, .25);
+}
+
+.form-heading h3 {
+    background-color: var(--bg-main);
+    color: #fff;
+    line-height: 1.6;
 }

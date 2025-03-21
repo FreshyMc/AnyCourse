@@ -18,6 +18,8 @@ const academyThumbnailEndpoint = `/api/shop/thumbnail`;
 
 const editProfileEndpoint = `/api/user/`;
 
+const editCredentialsEndpoint = `/api/user/credentials`;
+
 export {
     loginEndpoint, 
     registerEndpoint, 
@@ -27,5 +29,6 @@ export {
     followAcademyEndpoint,
     unfollowAcademyEndpoint,
     academyThumbnailEndpoint,
-    editProfileEndpoint
+    editProfileEndpoint,
+    editCredentialsEndpoint
 };
