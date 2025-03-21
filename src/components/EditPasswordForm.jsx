@@ -32,8 +32,8 @@ export default function EditPasswordForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            {success && <div class="alert alert-success" role="alert">Password changed successfully!</div>}
-            {error && <div class="alert alert-danger" role="alert">{error?.message}</div>}
+            {success && <div className="alert alert-success" role="alert">Password changed successfully!</div>}
+            {error && <div className="alert alert-danger" role="alert">{error?.message}</div>}
             <PasswordInput value={values.password} onChange={handleChange} name="password" placeholder="Current Password" required />
             <PasswordInput value={values.newPassword} onChange={handleChange} name="newPassword" placeholder="New Password" required />
             <PasswordInput value={values.confirmNewPassword} onChange={handleChange} name="confirmNewPassword" placeholder="Confirm new Password" required />

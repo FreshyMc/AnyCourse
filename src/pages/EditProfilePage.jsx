@@ -1,5 +1,6 @@
 import EditPasswordForm from "../components/EditPasswordForm";
 import EditProfileForm from "../components/EditProfileForm";
+import EditProfilePictureForm from "../components/EditProfilePictureForm";
 import Footer from "../components/Footer";
 
 export default function EditProfilePage() {
@@ -15,6 +16,8 @@ export default function EditProfilePage() {
                     </div>
                     <div className="m-0 p-0 separator" />
                     <EditProfileForm />
+                    <div className="m-0 p-0 separator" />
+                    <EditProfilePictureForm />
                     <div className="m-0 p-0 separator" />
                     <EditPasswordForm />
                 </div>

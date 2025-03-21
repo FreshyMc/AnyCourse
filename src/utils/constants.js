@@ -20,6 +20,8 @@ const editProfileEndpoint = `/api/user/`;
 
 const editCredentialsEndpoint = `/api/user/credentials`;
 
+const editAvatarEdnpoint = `/api/user/avatar`;
+
 export {
     loginEndpoint, 
     registerEndpoint, 
@@ -30,5 +32,6 @@ export {
     unfollowAcademyEndpoint,
     academyThumbnailEndpoint,
     editProfileEndpoint,
-    editCredentialsEndpoint
+    editCredentialsEndpoint,
+    editAvatarEdnpoint
 };

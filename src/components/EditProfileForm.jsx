@@ -28,7 +28,7 @@ export default function EditProfileForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            {success && <div class="alert alert-success" role="alert">Username changed successfully!</div>}
+            {success && <div className="alert alert-success" role="alert">Username changed successfully!</div>}
             <input value={values.username} onChange={handleChange} type="text" name="username" placeholder="Username" className="form-control mb-3" />
             <button type="submit" className="btn auth-btn" disabled={loading}>Save</button>
         </form>
