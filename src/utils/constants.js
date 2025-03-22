@@ -22,6 +22,8 @@ const editCredentialsEndpoint = `/api/user/credentials`;
 
 const editAvatarEdnpoint = `/api/user/avatar`;
 
+const createAcademyEndpoint = `/api/shop/create`;
+
 export {
     loginEndpoint, 
     registerEndpoint, 
@@ -33,5 +35,6 @@ export {
     academyThumbnailEndpoint,
     editProfileEndpoint,
     editCredentialsEndpoint,
-    editAvatarEdnpoint
+    editAvatarEdnpoint,
+    createAcademyEndpoint
 };
