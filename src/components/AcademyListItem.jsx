@@ -1,18 +1,22 @@
+import { Link } from "react-router";
 import useAvatar from "../hooks/useAvatar";
 import useThumbnail from "../hooks/useThumbnail";
 import AcademyFollowBtn from "./AcademyFollowBtn";
 import Avatar from "./Avatar";
+import { getAcademyEndpoint } from "../utils/constants";
 
-export default function AcademyListItem({id, name, description, thumbnail, followersCount, ownerId, ownerUsername, ownerAvatar, following}) {
+export default function AcademyListItem({ id, name, description, thumbnail, followersCount, ownerId, ownerUsername, ownerAvatar, following }) {
     const avatar = useAvatar(ownerAvatar);
     const academyThumbnail = useThumbnail(thumbnail);
 
-    const style = academyThumbnail ? {backgroundImage: `url(${academyThumbnail})`} : {};
+    const style = academyThumbnail ? { backgroundImage: `url(${academyThumbnail})` } : {};
 
     return (
         <div className="academy">
             <div className="academy-thumbnail" style={style}>
-                <h3>{name}</h3>
+                <Link to={`/academy/${id}`}>
+                    <h3>{name}</h3>
+                </Link>
             </div>
             <div className="academy-bottom">
                 <div className="d-flex px-4 py-3">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../utils/api";
 import { followAcademyEndpoint, unfollowAcademyEndpoint } from "../utils/constants";
 import { useAuth } from "../contexts/AuthContext";
@@ -7,6 +7,10 @@ export default function AcademyFollowBtn({ id, follower }) {
     const { loggedIn, openLogin } = useAuth();
     const [inRequest, setRequest] = useState(false);
     const [following, setFollowing] = useState(follower);
+
+    useEffect(() => {
+        setFollowing(follower);
+    }, [id, follower]);
 
     const handleFollow = (e) => {
         setRequest(true);

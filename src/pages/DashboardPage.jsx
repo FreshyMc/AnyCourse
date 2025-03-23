@@ -6,12 +6,20 @@ import useFetch from "../hooks/useFetch";
 import { createAcademyEndpoint, profileEndpoint } from "../utils/constants";
 import Modal from "../components/Modal";
 import useForm from "../hooks/useForm";
+import { useNavigate } from "react-router";
 
 export default function DashboardPage() {
     const [profile, profileLoading] = useFetch(profileEndpoint);
     const avatar = useAvatar(profile?.avatar ?? null);
+    const navigate = useNavigate();
 
     const academyModalRef = useRef(null);
+
+    const successHandler = (data) => {
+        console.log('Success', data);
+        resetForm();
+        navigate(`/academy/${data.id}`);
+    };
 
     const handleAcademyCreation = () => {
         if (academyModalRef.current) academyModalRef.current.open();
@@ -28,7 +36,7 @@ export default function DashboardPage() {
         },
         createAcademyEndpoint,
         'post',
-        (data) => {console.log('Success', data)},
+        successHandler,
         (data) => {console.log('Failure', data)}
     );
 

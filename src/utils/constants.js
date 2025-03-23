@@ -24,6 +24,8 @@ const editAvatarEdnpoint = `/api/user/avatar`;
 
 const createAcademyEndpoint = `/api/shop/create`;
 
+const getAcademyEndpoint = (id) => `/api/shop/${id}`;
+
 export {
     loginEndpoint, 
     registerEndpoint, 
@@ -36,5 +38,6 @@ export {
     editProfileEndpoint,
     editCredentialsEndpoint,
     editAvatarEdnpoint,
-    createAcademyEndpoint
+    createAcademyEndpoint,
+    getAcademyEndpoint
 };
