@@ -756,3 +756,13 @@ footer {
 .material-thumbnail button {
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, .45));
 }
+
+.academy-upload {
+    display: flex;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(59, 96, 228, .15);
+    border-radius: .45rem;
+    border: 2px solid var(--bg-main);
+}

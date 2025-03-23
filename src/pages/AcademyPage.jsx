@@ -11,6 +11,7 @@ import useThumbnail from "../hooks/useThumbnail";
 import EditAcademyModal from "../components/EditAcademyModal";
 import ChangeThumbnailModal from "../components/ChangeThumbnailModal";
 import { useEffect, useRef, useState } from "react";
+import UploadMaterialModal from "../components/UploadMaterialModal";
 
 export default function AcademyPage() {
     const { id } = useParams();
@@ -44,6 +45,12 @@ export default function AcademyPage() {
 
     const handleAcademyDetailsChange = (data) => {
         changeAcademy(data);
+    };
+
+    const uploadModalRef = useRef(null);
+
+    const handleUploadMaterial = () => {
+        if (uploadModalRef.current) uploadModalRef.current.open();
     };
 
     return (
@@ -90,6 +97,12 @@ export default function AcademyPage() {
                                 {academy?.description}
                             </p>
                         </div>
+                        <div className="academy-upload mt-3">
+                            <button className="btn btn-primary" onClick={handleUploadMaterial}>
+                                <i className="fa-solid fa-upload" />
+                                <span className="ps-2">Upload Material</span>
+                            </button>
+                        </div>
                         <div className="academy-materials mt-4">
                             <h4 className="title m-0">Materials</h4>
                             <MaterialsWrapper>
@@ -102,6 +115,7 @@ export default function AcademyPage() {
             <Footer />
             <EditAcademyModal academyId={id} ref={academyModalRef} data={academy} handleChange={handleAcademyDetailsChange} />
             <ChangeThumbnailModal academyId={id} ref={thumbnailModalRef} handleChange={handleThumbnailChange} />
+            <UploadMaterialModal academyId={id} ref={uploadModalRef} />
         </>
     );
 }

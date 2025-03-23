@@ -30,6 +30,10 @@ const editThumbnailEndpoint = (id) => `/api/shop/change/thumbnail/${id}`;
 
 const editAcademyEndpoint = `/api/shop/update`;
 
+const createMaterialEdnpoint = `/api/material/create`;
+
+const uploadMaterialEndpoint = (id) => `/api/material/upload/${id}`;
+
 export {
     loginEndpoint, 
     registerEndpoint, 
@@ -45,5 +49,7 @@ export {
     createAcademyEndpoint,
     getAcademyEndpoint,
     editThumbnailEndpoint,
-    editAcademyEndpoint
+    editAcademyEndpoint,
+    createMaterialEdnpoint,
+    uploadMaterialEndpoint
 };
