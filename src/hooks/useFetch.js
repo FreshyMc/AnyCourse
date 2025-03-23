@@ -17,5 +17,5 @@ export default function useFetch(url, config = {}) {
         }).finally(() => setLoading(false));
     }, [url, stableConfig]);
 
-    return [data, loading];
+    return [data, loading, setData];
 }

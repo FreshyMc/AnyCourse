@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../utils/api";
 
 export default function useForm(initialValues, submitUrl, method, success, failure) {
@@ -6,6 +6,10 @@ export default function useForm(initialValues, submitUrl, method, success, failu
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     
+    useEffect(() => {
+        setValues(initialValues);
+    }, [JSON.stringify(initialValues)]);
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.currentTarget;
 

@@ -625,6 +625,7 @@ footer {
 }
 
 .academy-page-thumbnail {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -641,6 +642,13 @@ footer {
     line-height: 2;
     border-radius: .45rem;
     color: #fff;
+}
+
+.thumbnail-actions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 15px;
 }
 
 .academy-owner {
