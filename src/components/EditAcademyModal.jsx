@@ -30,7 +30,7 @@ export default function EditAcademyModal({ academyId, data, handleChange: change
     };
 
     const handleFailure = (data) => {
-        console.log(data);
+        console.log('Failed', data);
     };
 
     const { values, loading, handleChange, handleSubmit, resetForm } = useForm(
@@ -42,7 +42,7 @@ export default function EditAcademyModal({ academyId, data, handleChange: change
         editAcademyEndpoint,
         'put',
         handleSuccess,
-        (data) => { console.log('Failure', data) }
+        handleFailure
     );
 
     return (
