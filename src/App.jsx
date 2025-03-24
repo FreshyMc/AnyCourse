@@ -7,6 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import DashboardPage from './pages/DashboardPage';
 import EditProfilePage from './pages/EditProfilePage';
 import AcademyPage from './pages/AcademyPage';
+import MaterialPage from './pages/MaterialPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route index element={<LandingPage />} />
           <Route path='/academy/:id' element={<AcademyPage />} />
+          <Route path='/material/:id' element={<MaterialPage />} />
           <Route element={<PrivateRoute />}>
             <Route path='/my-profile' element={<ProfilePage />} />
             <Route path='/edit-profile' element={<EditProfilePage />} />

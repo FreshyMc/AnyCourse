@@ -97,12 +97,14 @@ export default function AcademyPage() {
                                 {academy?.description}
                             </p>
                         </div>
-                        <div className="academy-upload mt-3">
-                            <button className="btn btn-primary" onClick={handleUploadMaterial}>
-                                <i className="fa-solid fa-upload" />
-                                <span className="ps-2">Upload Material</span>
-                            </button>
-                        </div>
+                        {isAcademyOwner && (
+                            <div className="academy-upload mt-3">
+                                <button className="btn btn-primary" onClick={handleUploadMaterial}>
+                                    <i className="fa-solid fa-upload" />
+                                    <span className="ps-2">Upload Material</span>
+                                </button>
+                            </div>
+                        )}
                         <div className="academy-materials mt-4">
                             <h4 className="title m-0">Materials</h4>
                             <MaterialsWrapper>
@@ -113,9 +115,9 @@ export default function AcademyPage() {
                 </div>
             </main>
             <Footer />
-            <EditAcademyModal academyId={id} ref={academyModalRef} data={academy} handleChange={handleAcademyDetailsChange} />
-            <ChangeThumbnailModal academyId={id} ref={thumbnailModalRef} handleChange={handleThumbnailChange} />
-            <UploadMaterialModal academyId={id} ref={uploadModalRef} />
+            {isAcademyOwner && <EditAcademyModal academyId={id} ref={academyModalRef} data={academy} handleChange={handleAcademyDetailsChange} />}
+            {isAcademyOwner && <ChangeThumbnailModal academyId={id} ref={thumbnailModalRef} handleChange={handleThumbnailChange} />}
+            {isAcademyOwner && <UploadMaterialModal academyId={id} ref={uploadModalRef} />}
         </>
     );
 }
