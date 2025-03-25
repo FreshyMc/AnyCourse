@@ -34,6 +34,14 @@ const createMaterialEdnpoint = `/api/material/create`;
 
 const uploadMaterialEndpoint = (id) => `/api/material/upload/${id}`;
 
+const uploadMaterialThumbnailEndpoint = (id) => `/api/material/thumbnail/${id}`;
+
+const allMaterialsEndpoint = `/api/material/all`;
+
+const getMaterialEndpoint = (id) => `/api/material/retrieve/${id}`;
+
+const materialThumbnailEndpoint = (id) => `/api/material/thumbnail/${id}`;
+
 export {
     loginEndpoint, 
     registerEndpoint, 
@@ -51,5 +59,9 @@ export {
     editThumbnailEndpoint,
     editAcademyEndpoint,
     createMaterialEdnpoint,
-    uploadMaterialEndpoint
+    uploadMaterialEndpoint,
+    uploadMaterialThumbnailEndpoint,
+    getMaterialEndpoint,
+    allMaterialsEndpoint,
+    materialThumbnailEndpoint
 };

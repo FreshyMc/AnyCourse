@@ -12,6 +12,7 @@ import EditAcademyModal from "../components/EditAcademyModal";
 import ChangeThumbnailModal from "../components/ChangeThumbnailModal";
 import { useEffect, useRef, useState } from "react";
 import UploadMaterialModal from "../components/UploadMaterialModal";
+import useMaterials from "../hooks/useMaterials";
 
 export default function AcademyPage() {
     const { id } = useParams();
@@ -19,6 +20,7 @@ export default function AcademyPage() {
     const avatar = useAvatar(academy?.ownerAvatar ?? null);
     const [thumbnailPath, setThumbnailPath] = useState(null);
     const thumbnail = useThumbnail(thumbnailPath);
+    const [materials, addMaterial, loadingMaterials] = useMaterials(academy?.id ?? null);
 
     useEffect(() => {
         setThumbnailPath(academy?.thumbnail);
@@ -108,7 +110,7 @@ export default function AcademyPage() {
                         <div className="academy-materials mt-4">
                             <h4 className="title m-0">Materials</h4>
                             <MaterialsWrapper>
-                                <Material />
+                                {materials.map(material => <Material key={material.id} {...material} />)}
                             </MaterialsWrapper>
                         </div>
                     </div>
@@ -117,7 +119,7 @@ export default function AcademyPage() {
             <Footer />
             {isAcademyOwner && <EditAcademyModal academyId={id} ref={academyModalRef} data={academy} handleChange={handleAcademyDetailsChange} />}
             {isAcademyOwner && <ChangeThumbnailModal academyId={id} ref={thumbnailModalRef} handleChange={handleThumbnailChange} />}
-            {isAcademyOwner && <UploadMaterialModal academyId={id} ref={uploadModalRef} />}
+            {isAcademyOwner && <UploadMaterialModal academyId={id} ref={uploadModalRef} handleChange={addMaterial} />}
         </>
     );
 }

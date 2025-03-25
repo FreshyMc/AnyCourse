@@ -1,9 +1,10 @@
 import { useImperativeHandle, useRef, useState } from "react";
 import Modal from "./Modal";
-import { createMaterialEdnpoint, uploadMaterialEndpoint } from "../utils/constants";
-import useMultipartForm from "../hooks/useMultipartForm";
+import { createMaterialEdnpoint, getMaterialEndpoint } from "../utils/constants";
+import useMaterialUpload from "../hooks/useMaterialUpload";
+import api from "../utils/api";
 
-export default function UploadMaterialModal({ academyId, ref }) {
+export default function UploadMaterialModal({ academyId, handleChange, ref }) {
     const modalRef = useRef(null);
     const formRef = useRef(null);
     const [success, setSuccess] = useState(false);
@@ -17,25 +18,33 @@ export default function UploadMaterialModal({ academyId, ref }) {
         if (modalRef.current) modalRef.current.close();
     };
 
-    const handleSuccess = (data) => {
+    const fetchMaterial = (id) => {
+        return api.get(getMaterialEndpoint(id))
+        .then(({data}) => {
+            return data;
+        }).catch(err => console.log('Error', err));
+    };
+
+    const handleSuccess = async (data) => {
         console.log(data);
         if (formRef.current) formRef.current.reset();
         resetForm();
         setSuccess(true);
+        const material = await fetchMaterial(data.id);
+        handleChange(material);
     };
 
     const handleFailure = (data) => {
         console.log(data);
     };
 
-    const { values, loading, progress, handleChange, handleSubmit, resetForm } = useMultipartForm(
+    const { values, loading, progress, handleChange: formChange, handleSubmit, resetForm } = useMaterialUpload(
         {
             shopId: `${academyId}`,
             title: '',
             description: ''
         },
         createMaterialEdnpoint,
-        uploadMaterialEndpoint,
         'post',
         handleSuccess,
         handleFailure
@@ -51,21 +60,29 @@ export default function UploadMaterialModal({ academyId, ref }) {
                     <h2 className="mb-4">Upload Material</h2>
                     <form onSubmit={handleSubmit} ref={formRef}>
                         {success && <div className="alert alert-success" role="alert" onClick={() => setSuccess(false)}>Material uploaded successfully!</div>}
-                        <input type="text" value={values.title} onChange={handleChange} name="title" placeholder="Title" className="form-control mb-3" disabled={loading} />
-                        <textarea value={values.description} onChange={handleChange} name="description" placeholder="Description" style={{ maxHeight: '150px' }} className="form-control mb-3" disabled={loading} />
+                        <input type="text" value={values.title} onChange={formChange} name="title" placeholder="Title" className="form-control mb-3" disabled={loading} required />
+                        <textarea value={values.description} onChange={formChange} name="description" placeholder="Description" style={{ maxHeight: '150px' }} className="form-control mb-3" disabled={loading} required />
                         <div className="mb-3">
-                            <label htmlFor="profilePicture" className="form-label">Select Material</label>
-                            <input onChange={handleChange} className="form-control" id="profilePicture" type="file" accept="video/*" disabled={loading} required />
+                            <label htmlFor="materialThumbnail" className="form-label">Select Thumbnail</label>
+                            <input onChange={formChange} className="form-control" id="materialThumbnail" type="file" accept="image/*" name="thumbnail" disabled={loading} required />
                         </div>
-                        {progress && (
-                            <div className="progress mb-3" role="progressbar" aria-label="Animated striped example" aria-valuenow={progress} aria-valuemin="0" aria-valuemax="100">
-                                <div className="progress-bar progress-bar-striped progress-bar-animated" style={{ width: `${progress}%` }} />
-                            </div>
-                        )}
+                        <div className="mb-3">
+                            <label htmlFor="material" className="form-label">Select Material</label>
+                            <input onChange={formChange} className="form-control" id="material" type="file" accept="video/*" name="material" disabled={loading} required />
+                        </div>
+                        {progress && Object.entries(progress).map(([key, value]) => <ProgressBar key={key} progress={value} />)}
                         <button type="submit" className="btn btn-primary" disabled={loading}>Upload</button>
                     </form>
                 </div>
             </div>
         </Modal>
+    );
+}
+
+function ProgressBar({ progress }) {
+    return (
+        <div className="progress mb-3" role="progressbar" aria-label="Animated striped example" aria-valuenow={progress} aria-valuemin="0" aria-valuemax="100">
+            <div className="progress-bar progress-bar-striped progress-bar-animated" style={{ width: `${progress}%` }} />
+        </div>
     );
 }
