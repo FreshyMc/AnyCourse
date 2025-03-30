@@ -44,6 +44,8 @@ const materialThumbnailEndpoint = (id) => `/api/material/thumbnail/${id}`;
 
 const validateTokenEndpoint = `/api/auth/verify`;
 
+const materialStreamEndpoint = (id) => `/api/material/stream/${id}`;
+
 export {
     loginEndpoint, 
     registerEndpoint, 
@@ -66,5 +68,6 @@ export {
     getMaterialEndpoint,
     allMaterialsEndpoint,
     materialThumbnailEndpoint,
-    validateTokenEndpoint
+    validateTokenEndpoint,
+    materialStreamEndpoint
 };

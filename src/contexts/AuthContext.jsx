@@ -7,6 +7,7 @@ import { validateTokenEndpoint } from "../utils/constants";
 import { useNavigate } from "react-router";
 
 const AuthContext = createContext({
+    token: null,
     loggedIn: false,
     openLogin: () => {},
     closeLogin: () => {},
@@ -53,7 +54,7 @@ export function AuthProvider({children}) {
     const loggedIn = token !== null;
 
     return (
-        <AuthContext.Provider value={{openLogin, closeLogin, openRegister, closeRegister, setToken, loggedIn}}>
+        <AuthContext.Provider value={{openLogin, closeLogin, openRegister, closeRegister, token, setToken, loggedIn}}>
             {children}
             <LoginModal ref={loginRef} />
             <RegisterModal ref={registerRef} />

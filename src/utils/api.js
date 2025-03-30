@@ -18,6 +18,16 @@ api.interceptors.request.use((config) => {
     }
 
     return config;
-}, (error) => Promise.reject(error));
+}, (error) => {
+    return Promise.reject(error);
+});
+
+api.interceptors.response.use((response) => response, (error) => {
+    if (error.response) {
+        if (error.response.status === 401 || error.response.status === 403) {
+            localStorage.setItem('auth', null);
+        }
+    }
+});
 
 export default api;
