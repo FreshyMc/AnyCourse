@@ -42,6 +42,8 @@ const getMaterialEndpoint = (id) => `/api/material/retrieve/${id}`;
 
 const materialThumbnailEndpoint = (id) => `/api/material/thumbnail/${id}`;
 
+const validateTokenEndpoint = `/api/auth/verify`;
+
 export {
     loginEndpoint, 
     registerEndpoint, 
@@ -63,5 +65,6 @@ export {
     uploadMaterialThumbnailEndpoint,
     getMaterialEndpoint,
     allMaterialsEndpoint,
-    materialThumbnailEndpoint
+    materialThumbnailEndpoint,
+    validateTokenEndpoint
 };

@@ -8,9 +8,21 @@ export default function useAvatar(path) {
     useEffect(() => {
         if (!path) return;
 
-        api.get(profileAvatarEndpoint, {params: {path: path}, responseType: 'blob'}).then(({data}) => {
-            setAvatar(() => URL.createObjectURL(data));
+        const abortController = new AbortController();
+
+        let objectUrl = null;
+
+        api.get(profileAvatarEndpoint, {params: {path: path}, responseType: 'blob', signal: abortController.signal}).then(({data}) => {
+            objectUrl = URL.createObjectURL(data);
+            setAvatar(() => objectUrl);
         });
+
+        return () => {
+            abortController.abort()
+            if (objectUrl) {
+                URL.revokeObjectURL(objectUrl);
+            }
+        };
     }, [path]);
 
     return avatar;

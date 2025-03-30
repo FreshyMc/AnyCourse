@@ -13,6 +13,7 @@ import ChangeThumbnailModal from "../components/ChangeThumbnailModal";
 import { useEffect, useRef, useState } from "react";
 import UploadMaterialModal from "../components/UploadMaterialModal";
 import useMaterials from "../hooks/useMaterials";
+import LoadingContainer from "../components/LoadingContainer";
 
 export default function AcademyPage() {
     const { id } = useParams();
@@ -109,9 +110,22 @@ export default function AcademyPage() {
                         )}
                         <div className="academy-materials mt-4">
                             <h4 className="title m-0">Materials</h4>
-                            <MaterialsWrapper>
-                                {materials.map(material => <Material key={material.id} {...material} />)}
-                            </MaterialsWrapper>
+                            <LoadingContainer loading={loadingMaterials}>
+                                {
+                                    materials.length > 0 ? (
+                                        <MaterialsWrapper>
+                                            {materials.map(material => <Material key={material.id} {...material} />)}
+                                        </MaterialsWrapper>
+                                    ) : (
+                                        <div className="no-materials my-3">
+                                            <div className="text-center p-4">
+                                                <i className="fa-regular fa-face-frown fa-5x" />
+                                                <p className="m-0 mt-2 pt-2">No Materials currently here.</p>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                            </LoadingContainer>
                         </div>
                     </div>
                 </div>

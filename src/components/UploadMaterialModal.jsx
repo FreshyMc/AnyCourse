@@ -11,11 +11,12 @@ export default function UploadMaterialModal({ academyId, handleChange, ref }) {
 
     useImperativeHandle(ref, () => ({
         open: () => modalRef.current.open(),
-        close: () => modalRef.current.close()
+        close: () => handleClose()
     }));
 
     const handleClose = () => {
         if (modalRef.current) modalRef.current.close();
+        setSuccess(false);
     };
 
     const fetchMaterial = (id) => {

@@ -3,14 +3,16 @@ import api from "../utils/api";
 import { allMaterialsEndpoint } from "../utils/constants";
 
 export default function useMaterials(academyId) {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [materials, setMaterials] = useState([]);
 
     useEffect(() => {
         if (!academyId) return;
         setLoading(true);
 
-        api.get(allMaterialsEndpoint, {params: {shop_id: academyId}})
+        const abortController = new AbortController();
+
+        api.get(allMaterialsEndpoint, {params: {shop_id: academyId}, signal: abortController.signal})
         .then(({data}) => {
             setMaterials([...data.content]);
         })
@@ -18,6 +20,8 @@ export default function useMaterials(academyId) {
         .finally(() => {
             setLoading(false);
         });
+
+        return () => abortController.abort();
     }, [academyId]);
 
     const addMaterial = (material) => {

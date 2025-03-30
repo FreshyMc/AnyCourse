@@ -777,3 +777,23 @@ footer {
     border-radius: .45rem;
     border: 2px solid var(--bg-main);
 }
+
+.no-materials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(59, 96, 228, .15);
+    border: 2px solid var(--bg-main);
+    border-radius: .45rem;
+}
+
+.loading-container {
+    height: 200px;
+}
+
+.loading-container .spinner-border {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-color: var(--bg-main);
+    border-right-color: transparent;
+}

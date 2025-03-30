@@ -8,9 +8,21 @@ export default function useThumbnail(path) {
     useEffect(() => {
         if (!path) return;
 
-        api.get(academyThumbnailEndpoint, {params: {path: path}, responseType: 'blob'}).then(({data}) => {
-            setThumbnail(() => URL.createObjectURL(data));
+        const abortController = new AbortController();
+
+        let objectUrl = null;
+
+        api.get(academyThumbnailEndpoint, {params: {path: path}, responseType: 'blob', signal: abortController.signal}).then(({data}) => {
+            objectUrl = URL.createObjectURL(data);
+            setThumbnail(() => objectUrl);
         });
+
+        return () => {
+            abortController.abort()
+            if (objectUrl) {
+                URL.revokeObjectURL(objectUrl);
+            }
+        };
     }, [path]);
 
     return thumnbail;
