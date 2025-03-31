@@ -799,6 +799,7 @@ footer {
 }
 
 .video-player {
+    display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
 }
@@ -807,10 +808,29 @@ footer {
     width: 100%;
 }
 
+.video-player video {
+    object-fit: cover;
+}
+
 .video-description {
     width: 100%;
     min-height: 200px;
     background-color: rgba(59, 96, 228, .15);
     border-radius: .45rem;
+    overflow: hidden;
+}
+
+.video-player-wrapper {
+    background-color: #fff;
+    border-radius: .45rem;
+    box-shadow: 0 0 9px rgba(0, 0, 0, .15);
+    overflow: hidden;
+}
+
+.related-videos {
+    min-height: 100vh;
+    background-color: #fff;
+    border-radius: .45rem;
+    box-shadow: 0 0 9px rgba(0, 0, 0, .15);
     overflow: hidden;
 }
